@@ -28,62 +28,8 @@ class Backend implements Account, Database {
   String get region => _region;
 
   @override
-  Future register(String username, String password) {
-    // TODO: implement register
-    throw UnimplementedError();
-  }
-
-  @override
-  Future addUser(String token, String email, String password) {
+  Future addUser(String token, email, password) {
     // TODO: implement addUser
-    throw UnimplementedError();
-  }
-
-  @override
-  Future getPasswordResetCode(String token, String email) {
-    // TODO: implement getPasswordResetCode
-    throw UnimplementedError();
-  }
-
-  @override
-  Future login(String username, String password) {
-    // TODO: implement login
-    throw UnimplementedError();
-  }
-
-  @override
-  Future me(String token) {
-    // TODO: implement me
-    throw UnimplementedError();
-  }
-
-  @override
-  Future removeUser(String token, String userID) {
-    // TODO: implement removeUser
-    throw UnimplementedError();
-  }
-
-  @override
-  Future resetPassword(String email, String code, String password) {
-    // TODO: implement resetPassword
-    throw UnimplementedError();
-  }
-
-  @override
-  Future setPassword(String token, String email, String oldPassword, String newPassword) {
-    // TODO: implement setPassword
-    throw UnimplementedError();
-  }
-
-  @override
-  Future sudoGetToken(String token, String accountID) {
-    // TODO: implement sudoGetToken
-    throw UnimplementedError();
-  }
-
-  @override
-  Future users(String token) {
-    // TODO: implement users
     throw UnimplementedError();
   }
 
@@ -94,13 +40,13 @@ class Backend implements Account, Database {
   }
 
   @override
-  Future create(String token, String repo, body) {
+  Future create(String token, repo, body) {
     // TODO: implement create
     throw UnimplementedError();
   }
 
   @override
-  Future createBulk(String token, String repo, List bodies) {
+  Future createBulk(String token, repo, List bodies) {
     // TODO: implement createBulk
     throw UnimplementedError();
   }
@@ -130,8 +76,14 @@ class Backend implements Account, Database {
   }
 
   @override
-  Future getByID(String token, String repo, String id) {
+  Future getByID(String token, repo, id) {
     // TODO: implement getByID
+    throw UnimplementedError();
+  }
+
+  @override
+  Future getPasswordResetCode(String token, email) {
+    // TODO: implement getPasswordResetCode
     throw UnimplementedError();
   }
 
@@ -142,8 +94,38 @@ class Backend implements Account, Database {
   }
 
   @override
-  Future<ListResult> list(String token, String repo, ListParams params) {
+  Future<ListResult> list(String token, repo, ListParams params) {
     // TODO: implement list
+    throw UnimplementedError();
+  }
+
+  @override
+  Future login(String username, password) {
+    // TODO: implement login
+    throw UnimplementedError();
+  }
+
+  @override
+  Future me(String token) {
+    // TODO: implement me
+    throw UnimplementedError();
+  }
+
+  @override
+  Future register(String username, password) {
+    // TODO: implement register
+    throw UnimplementedError();
+  }
+
+  @override
+  Future removeUser(String token, userID) {
+    // TODO: implement removeUser
+    throw UnimplementedError();
+  }
+
+  @override
+  Future resetPassword(String email, code, password) {
+    // TODO: implement resetPassword
     throw UnimplementedError();
   }
 
@@ -154,13 +136,19 @@ class Backend implements Account, Database {
   }
 
   @override
+  Future setPassword(String token, email, oldPassword, newPassword) {
+    // TODO: implement setPassword
+    throw UnimplementedError();
+  }
+
+  @override
   Future sudoAddIndex(String token, repo, field) {
     // TODO: implement sudoAddIndex
     throw UnimplementedError();
   }
 
   @override
-  Future sudoCreate(String token, string, body) {
+  Future sudoCreate(String token, repo, body) {
     // TODO: implement sudoCreate
     throw UnimplementedError();
   }
@@ -174,6 +162,12 @@ class Backend implements Account, Database {
   @override
   Future sudoGetByID(String token, repo, string) {
     // TODO: implement sudoGetByID
+    throw UnimplementedError();
+  }
+
+  @override
+  Future sudoGetToken(String token, accountID) {
+    // TODO: implement sudoGetToken
     throw UnimplementedError();
   }
 
@@ -206,4 +200,11 @@ class Backend implements Account, Database {
     // TODO: implement updateBulk
     throw UnimplementedError();
   }
+
+  @override
+  Future users(String token) {
+    // TODO: implement users
+    throw UnimplementedError();
+  }
+
 }
