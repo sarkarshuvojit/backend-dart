@@ -1,8 +1,8 @@
 abstract class Database {
-    Future<dynamic> create(String token, String repo, dynamic body);
-    Future<dynamic> createBulk(String token, String repo, List<dynamic> bodies);
-    Future<ListResult> list(String token, String repo, ListParams params);
-    Future<dynamic> getByID(String token, String repo, String id);
+    Future<dynamic> create(String token, repo, body);
+    Future<dynamic> createBulk(String token, repo, List<dynamic> bodies);
+    Future<ListResult> list(String token, repo, ListParams params);
+    Future<dynamic> getByID(String token, repo, id);
 
     // FindOne returns one document if it's found
     Future<dynamic> findOne(String token, repo, List<QueryItem> filters); 
@@ -23,7 +23,7 @@ abstract class Database {
     Future<dynamic> deleteBulk(String token, repo, List<QueryItem> filters); 
 
     // SudoCreate adds a new document to a repository and returns the created document.
-    Future<dynamic> sudoCreate(String token, repo string, dynamic body);
+    Future<dynamic> sudoCreate(String token, repo, dynamic body);
 
     // SudoList returns a list of documents in a specific repository if a "root token" is used.
     Future<dynamic> sudoList(String token, repo, ListParams params );

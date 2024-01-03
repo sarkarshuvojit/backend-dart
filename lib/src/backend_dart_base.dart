@@ -19,9 +19,9 @@ class Backend implements Account, Database {
         _baseURL = "http://localhost:8099";
     } else if (region.length > 3) {
         // for self-hosted base URL
-        this._baseURL = region;
+        _baseURL = region;
     } else {
-        this._baseURL = "https://$region.staticbackend.com";
+        _baseURL = "https://$region.staticbackend.com";
     }
   }
 
