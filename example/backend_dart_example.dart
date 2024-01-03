@@ -1,6 +1,6 @@
-import 'package:backend_dart/backend_dart.dart';
+import 'package:statibackend_dart_client/backend_dart.dart';
 
 void main() {
-  var awesome = Awesome();
-  print('awesome: ${awesome.isAwesome}');
+  var backend = Backend.defaultRegion("public-key");
+  print('awesome: ${backend.region}');
 }
