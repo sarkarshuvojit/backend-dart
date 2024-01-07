@@ -1,3 +1,4 @@
+import 'package:statibackend_dart_client/src/api_client.dart';
 import 'package:statibackend_dart_client/src/interfaces/account.dart';
 import 'package:statibackend_dart_client/src/interfaces/database.dart';
 
@@ -5,6 +6,7 @@ class Backend implements Account, Database {
   String _baseURL = "https://na1.staticbackend.com";
   final String _publicKey;
   final String _region;
+  late ApiClient _apiClient;
 
   Backend(this._publicKey, this._region) {
     _setBaseURL(region);
@@ -12,6 +14,10 @@ class Backend implements Account, Database {
 
   Backend.defaultRegion(this._publicKey): _region = "na1" {
     _setBaseURL(region);
+  }
+
+  void _initAPIClient() {
+    _apiClient = ApiClient(baseUrl: _baseURL);
   }
 
   void _setBaseURL(String region) {
@@ -23,6 +29,7 @@ class Backend implements Account, Database {
     } else {
         _baseURL = "https://$region.staticbackend.com";
     }
+    _initAPIClient();
   }
 
   String get region => _region;
@@ -206,5 +213,6 @@ class Backend implements Account, Database {
     // TODO: implement users
     throw UnimplementedError();
   }
+  
 
 }
