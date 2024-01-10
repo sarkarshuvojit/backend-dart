@@ -10,10 +10,16 @@ class Backend implements Account, Database {
 
   Backend(this._publicKey, this._region) {
     _setBaseURL(region);
+    _initAPIClient();
+  }
+
+  Backend.forTest(this._publicKey, this._region, this._apiClient) {
+    _setBaseURL(region);
   }
 
   Backend.defaultRegion(this._publicKey): _region = "na1" {
     _setBaseURL(region);
+    _initAPIClient();
   }
 
   void _initAPIClient() {
@@ -22,14 +28,13 @@ class Backend implements Account, Database {
 
   void _setBaseURL(String region) {
     if (region == 'dev') {
-        _baseURL = "http://localhost:8099";
+        _baseURL = "http://localhost:8099/";
     } else if (region.length > 3) {
         // for self-hosted base URL
         _baseURL = region;
     } else {
-        _baseURL = "https://$region.staticbackend.com";
+        _baseURL = "https://$region.staticbackend.com/";
     }
-    _initAPIClient();
   }
 
   String get region => _region;
@@ -119,9 +124,11 @@ class Backend implements Account, Database {
   }
 
   @override
-  Future register(String username, password) {
-    // TODO: implement register
-    throw UnimplementedError();
+  Future register(String username, password) async {
+    return _apiClient.post("register", body: {
+      "email": username,
+      "password": password
+    });
   }
 
   @override

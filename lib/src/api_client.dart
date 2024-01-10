@@ -3,12 +3,11 @@ import 'dart:convert';
 import 'package:http/http.dart' as http;
 
 class ApiClient {
-  http.Client _client;
+  final http.Client _client;
   String baseUrl;
   
   ApiClient({ this.baseUrl = ""}):_client = http.Client();
   ApiClient.custom(this._client, this.baseUrl); 
-
 
   Future<dynamic> get(String path, {Map<String, String>? headers}) async {
     final response = await _client.get(Uri.parse('$baseUrl$path'), headers: headers);
@@ -41,7 +40,7 @@ class ApiClient {
 
     if (statusCode >= 200 && statusCode < 300) {
       // Successful response
-      return jsonDecode(responseBody);
+      return responseBody;
     } else {
       // Handle errors
       throw Exception('Request failed with status: $statusCode\n$responseBody');
