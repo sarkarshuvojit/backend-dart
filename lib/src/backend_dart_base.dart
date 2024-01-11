@@ -1,6 +1,7 @@
 import 'package:statibackend_dart_client/src/api_client.dart';
 
 import 'modules/account.dart';
+import 'modules/database.dart';
 
 class Backend {
   String _baseURL = "https://na1.staticbackend.com";
@@ -10,6 +11,7 @@ class Backend {
   Map<String, String> commonHeaders = {};
 
   late Account account;
+  late Database database;
 
   Backend(this._publicKey, this._region) {
     _setBaseURL(region);
@@ -33,6 +35,7 @@ class Backend {
 
   void _initSubmodules() {
     account = Account(_apiClient, commonHeaders);
+    database = Database(_apiClient, commonHeaders);
   }
 
   void _initAPIClient() {
@@ -55,6 +58,4 @@ class Backend {
   }
 
   String get region => _region;
-
-
 }
