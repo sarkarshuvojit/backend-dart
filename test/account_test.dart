@@ -10,26 +10,39 @@ import 'package:test/test.dart';
 import 'account_test.mocks.dart' as test_mocks;
 
 
+final mockPublicKey = "fakePpublicKey";
+
+Backend getMockBackendFromMockClient(test_mocks.MockClient mockClient) {
+  return Backend.forTest(
+        mockPublicKey,
+        "dev", 
+        ApiClient.custom(mockClient, "http://testbaseurl/")
+      );
+}
+
 @GenerateMocks([http.Client])
 void main() {
-  group('Testing Accounts', () {
+  group('Testing Accounts APIs', () {
 
-    test('Default Region Constructor should mark region as na1', () async {
+    test('Regiser should call /register with correct credentials', () async {
       final mockClient = test_mocks.MockClient();
       final mockJwt = "eyfirstpart.second.third";
       final mockEmail = "shuvojit@test.com";
       final mockPassword = "shuvojit";
-      Backend backend = Backend.forTest(
-        "your-pub-key", 
-        "whatevs", 
-        ApiClient.custom(mockClient, "http://testbaseurl/")
-      );
-      
+      Backend backend = getMockBackendFromMockClient(mockClient);      
+
       when(
-        mockClient.post(Uri.parse("http://testbaseurl/register"), body: jsonEncode({
-          "email": mockEmail,
-          "password": mockPassword
-        }), headers: null, encoding: null)
+        mockClient.post(
+          Uri.parse("http://testbaseurl/register"), 
+          body: jsonEncode({
+            "email": mockEmail,
+            "password": mockPassword
+          }), 
+          headers: {
+            "SB-PUBLIC-KEY": mockPublicKey
+          }, 
+          encoding: null
+        )
       ).thenAnswer((_) async => http.Response(mockJwt, 200));
 
       expect(await backend.register(mockEmail, mockPassword), mockJwt);

@@ -7,19 +7,23 @@ class Backend implements Account, Database {
   final String _publicKey;
   final String _region;
   late ApiClient _apiClient;
+  Map<String, String> commonHeaders = {};
 
   Backend(this._publicKey, this._region) {
     _setBaseURL(region);
     _initAPIClient();
+    _setDefaultHeaders(_publicKey);
   }
 
   Backend.forTest(this._publicKey, this._region, this._apiClient) {
     _setBaseURL(region);
+    _setDefaultHeaders(_publicKey);
   }
 
   Backend.defaultRegion(this._publicKey): _region = "na1" {
     _setBaseURL(region);
     _initAPIClient();
+    _setDefaultHeaders(_publicKey);
   }
 
   void _initAPIClient() {
@@ -35,6 +39,10 @@ class Backend implements Account, Database {
     } else {
         _baseURL = "https://$region.staticbackend.com/";
     }
+  }
+
+  void _setDefaultHeaders(String publicKey) {
+    commonHeaders["SB-PUBLIC-KEY"] = publicKey;
   }
 
   String get region => _region;
@@ -124,11 +132,12 @@ class Backend implements Account, Database {
   }
 
   @override
-  Future register(String username, password) async {
-    return _apiClient.post("register", body: {
-      "email": username,
-      "password": password
-    });
+  Future<String> register(String username, password) async {
+    return _apiClient
+      .post(
+        "register", headers: commonHeaders, 
+        body: { "email": username, "password": password }
+      ).then((value) => value.body);
   }
 
   @override
