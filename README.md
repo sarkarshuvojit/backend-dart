@@ -3,12 +3,13 @@
 
 
 # backend-dart
-Node client library for [StaticBackend](https://staticbackend.com)'s API.
+Dart client library for [StaticBackend](https://staticbackend.com)'s API.
 
 ## Install
 
 ```
-$> npm i @staticbackend/backend
+$> dart pub get staticbackend_client
+$> flutter pub get staticbackend_client
 ```
 
 ## Usage
@@ -18,9 +19,9 @@ You'll need a public key to use this library. Please refer to our
 
 ### Importing and creating an instance
 
-```javascript
-import { Backend } from "@staticbackend/backend";
-const bkn = new Backend("your-pub-key", "region");
+```dart
+  Backend bb = Backend("pub-key", "na");
+  Backend bb1 = Backend.defaultRegion("pub-key");
 ```
 
 Only the `na1` region is supported. Your public key will be sent after you create 
@@ -41,11 +42,8 @@ contains the error message.
 
 ### Users registration and login
 
-```javascript
-const result = bkn.login("a@newuser.com", "pass123456");
-if (result.ok) {
-	console.log(result.content);
-}
+```dart
+// TODO
 ```
 
 For `login` and `register` the `content` field contains the user's session `token`.
