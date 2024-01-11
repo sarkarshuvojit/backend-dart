@@ -9,8 +9,10 @@ class Database implements IDatabase {
 
   @override
   Future count(String token, repo, List<QueryItem> filters) {
-    // TODO: implement count
-    throw UnimplementedError();
+    return _apiClient .post("db/count/$repo", 
+      body: filters, 
+      headers: _commonHeaders
+    );
   }
 
   @override

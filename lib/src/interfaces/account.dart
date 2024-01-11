@@ -1,5 +1,3 @@
-import '../api_client.dart';
-
 abstract class IAccount {
     Future<dynamic> register(String username, password);
     Future<dynamic> login(String username, password);
