@@ -1,4 +1,6 @@
-abstract class Account {
+import '../api_client.dart';
+
+abstract class IAccount {
     Future<dynamic> register(String username, password);
     Future<dynamic> login(String username, password);
     Future<dynamic> setPassword(String token, email, oldPassword, newPassword);
@@ -10,3 +12,4 @@ abstract class Account {
     Future<dynamic> me(String token);
     Future<dynamic> users(String token);
 }
+

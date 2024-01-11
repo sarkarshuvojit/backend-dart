@@ -1,4 +1,4 @@
-abstract class Database {
+abstract class IDatabase {
     Future<dynamic> create(String token, repo, body);
     Future<dynamic> createBulk(String token, repo, List<dynamic> bodies);
     Future<ListResult> list(String token, repo, ListParams params);
